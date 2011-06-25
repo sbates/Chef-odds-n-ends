@@ -8,7 +8,8 @@ hostbits = {
     :platforms =>    { :index => 1, "x"=>"linux", "l"=>"linux", "w"=>"windows", "v"=>"linux_vm"},
     :environments => { "d"=>"dev", "q"=>"qa", "s"=>"stage", "p"=>"prod", "r"=>"prod"},
     :applications => { :index => 3, "chf"=>"Chef", "ols"=>"OLS", "oms"=>"OMS", "pky"=>"Pooky", "src"=>"Search"},
-    :server_types => { :index => 4, "db"=>"database", "app"=>"application", "bch"=>"batch", "img"=>"image", "wmq"=>"mq", "web"=>"web"}
+    :server_types => { :index => 4, "db"=>"database", "app"=>"application", 
+                       "bch"=>"batch", "img"=>"image", "wmq"=>"mq", "web"=>"web"}
 }
 
 def match_host(hostname)
