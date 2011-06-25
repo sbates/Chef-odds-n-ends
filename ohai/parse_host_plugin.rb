@@ -1,5 +1,5 @@
 provides  "environment", "location", "hostdata"
-require_plugin "#{linux}{os}::hostname"
+require_plugin "#{os}::hostname"
 hostdata Mash.new
 Ohai::Log.debug("ohai plugin: parse_host: parsing new host #{hostname}")
 
