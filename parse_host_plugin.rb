@@ -5,13 +5,13 @@ Ohai::Log.debug("ohai plugin: parse_host: parsing new host #{hostname}")
 
 hostbits = {
     :locations =>    { "d"=>"denver", "p"=>"pismo", "h"=>"hanover"},
-    :platforms =>    { :index => 1, "x"=>"linux", "l"=>"linux", "w"=>"windows", "v"=>"linux_vm"},
+    :platforms =>    { :index => 1, "x"=>"solaris", "l"=>"linux", "w"=>"windows", "v"=>"linux_vm"},
     :environments => { "d"=>"dev", "q"=>"qa", "s"=>"stage", "p"=>"prod", "r"=>"prod"},
-    :applications => { :index => 3, "chf"=>"Chef", "ols"=>"OLS", "oms"=>"OMS", "pky"=>"Pooky", "src"=>"Search"},
-    :server_types => { :index => 4, "db"=>"database", "app"=>"application", "bch"=>"batch", "img"=>"image", "wmq"=>"mq", "web"=>"web"}
+    :applications => { :index => 3, "chf"=>"Chef", "kty"=>"Kitteh","bkt"=>"Bukkit", "pky"=>"Pooky", "src"=>"Search"},
+    :server_types => { :index => 4, "app"=>"application","img"=>"image", "wmq"=>"mq", "web"=>"web"}
 }
 
-def match_host(hostname)
+def match_host(hostname) #Our hostname looks like this: pxqktyapp09
   @hostmatch = /(\w)(\w)(\w)(\w\w\w)(\w\w\w)(\d*)/.match(hostname).to_a
   @hostmatch.shift
   @loc, plat, @env, app, server_type, seq = @hostmatch
