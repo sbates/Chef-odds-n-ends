@@ -45,7 +45,6 @@ def assign_hostdata
   end
 end
 
-
 match_host(hostname)
 set_host_location
 set_host_environment
