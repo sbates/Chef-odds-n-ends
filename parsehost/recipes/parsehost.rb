@@ -30,5 +30,5 @@ end
 # [root@dvdchfapp05 ~]# cat /tmp/hostdata.txt
 # pvplolwmq01:{:application=>"Cheez", :zone=>"internal", :platform=>"linux", :environment=>"prod", :env=>"p", :server_type=>"mq", :location=>"pismo", :loc=>"d"}
 # pxplolweb03:{:application=>"Cheez", :zone=>"internal", :platform=>"Solaris", :environment=>"prod", :env=>"p", :server_type=>"web", :location=>"pismo", :loc=>"d"}
-# pvppkyapp01:{:application=>Pooky, :zone=>"external", :platform=>"linux", :environment=>"prod", :env=>"p", :server_type=>"application", :location=>"pismo", :loc=>"d"}
+# pvppkyapp01:{:application=>"Pooky", :zone=>"external", :platform=>"linux", :environment=>"prod", :env=>"p", :server_type=>"application", :location=>"pismo", :loc=>"d"}
 
