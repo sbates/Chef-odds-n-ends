@@ -1,0 +1,8 @@
+hostbits:{
+    "locations" : { "d":"denver", "p":"pismo", "h":"hanover"},
+    "platforms" : { "index" : 1, "x":"solaris", "l":"linux", "w":"windows", "v":"linux_vm"},
+    "environments" : { "d":"dev", "q":"qa", "s":"stage", "p":"prod", "r":"prod"},
+    "applications" : { "index" : 3, "chf":"Chef", "kty":"Kitteh","bkt":"Bukkit", "pky":"Pooky", "lol":"Cheez"},
+    "server_types" : { "index" : 4, "app":"application","img":"image", "wmq":"mq", "web":"web"},
+    "zones"        : {"lol":"internal", "pky":"external"}
+}
