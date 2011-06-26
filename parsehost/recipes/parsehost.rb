@@ -1,11 +1,6 @@
 # Cookbook Name:: parsehost
 # Recipe:: parsehost
 #
-# Copyright 2011
-#
-# All rights reserved - Do Not Redistribute
-#
-
 def parse_host_function(hostname)
 
     Chef::Log.info("HostParse: parse_host: parsing host #{hostname}")
