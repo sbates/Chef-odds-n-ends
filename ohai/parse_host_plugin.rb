@@ -1,11 +1,11 @@
-provides  "environment", "location", "hostdata"
+provides "environment", "location", "hostdata"
 require_plugin "#{os}::hostname"
 hostdata Mash.new
 Ohai::Log.debug("ohai plugin: parse_host: parsing new host #{hostname}")
 
-hostbits = {
-    :locations =>    { "d"=>"denver", "p"=>"pismo", "h"=>"hanover"},
-    :platforms =>    { :index => 1, "x"=>"solaris", "l"=>"linux", "w"=>"windows", "v"=>"linux_vm"},
+@hostbits = {
+    :locations => { "d"=>"denver", "p"=>"pismo", "h"=>"hanover"},
+    :platforms => { :index => 1, "x"=>"solaris", "l"=>"linux", "w"=>"windows", "v"=>"linux_vm"},
     :environments => { "d"=>"dev", "q"=>"qa", "s"=>"stage", "p"=>"prod", "r"=>"prod"},
     :applications => { :index => 3, "chf"=>"Chef", "kty"=>"Kitteh","bkt"=>"Bukkit", "pky"=>"Pooky", "src"=>"Search"},
     :server_types => { :index => 4, "app"=>"application","img"=>"image", "wmq"=>"mq", "web"=>"web"}
@@ -18,29 +18,29 @@ def match_host(hostname) #Our hostname looks like this: pxqktyapp09
 end
 
 def set_host_location
-  if hostbits[:locations].key?(@loc)
-    location hostbits[:locations][@loc]
+  if @hostbits[:locations].key?(@loc)
+    location @hostbits[:locations][@loc]
   else
-    location  "default"
+    location "default"
   end
   hostdata[:loc] = @loc
 end
 
 def set_host_environment
-  if hostbits[:environments].key?(@env)
-    location == "hanover" ? (environment  "ps") : (environment  hostbits[:environments][@env])
+  if @hostbits[:environments].key?(@env)
+    location == "hanover" ? (environment "ps") : (environment @hostbits[:environments][@env])
   else
-    environment  "dev"
+    environment "dev"
     Ohai::Log.warn("could not set node environment due to unknown identifier #{@env}.Setting to default of d(for dev)")
   end
   hostdata[:env] = @env
 end
 
 def assign_hostdata
-  hostbits.keys.each do |k|
-    if hostbits[k][:index]
-      matched = @hostmatch[hostbits[k][:index]]
-      hostdata[k.to_s.chop] = hostbits[k][matched]
+  @hostbits.keys.each do |k|
+    if @hostbits[k][:index]
+      matched = @hostmatch[@hostbits[k][:index]]
+      hostdata[k.to_s.chop] = @hostbits[k][matched]
     end
   end
 end
