@@ -1,7 +1,6 @@
 #
 # Cookbook Name:: kickstart
 # Recipe:: default
-# Author:: Jeffrey Hulten
 #
 
 %w{ks custom chef}.each do |dir|
