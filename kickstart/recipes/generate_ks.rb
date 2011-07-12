@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: kickstart
-# Recipe:: rhelnew
+# Recipe:: generate_ks
 # Author:: Sascha Bates
 #
 
@@ -125,7 +125,7 @@ ks_files.each do |file|
           "text",
           "firstboot --disable",
           "network --device=eth0 --bootproto=dhcp",
-          "rootpw --iscrypted $1$S2eGt/$deBi8a2Q323C.CtEuESVj1",
+          "rootpw --iscrypted $1$",
           "selinux --disabled",
           "authconfig --enableshadow --enablemd5",
           "skipx",
@@ -215,7 +215,7 @@ ks_files.each do |file|
 
       json_file = [
           "echo \"creating initial node.json file for registration\"",
-          "echo { \"run_list\": [ \"role[bby_base]\" ]} >>/etc/chef/node.json "
+          "echo { \"run_list\": [ \"role[core]\" ]} >>/etc/chef/node.json "
       ]
 
       ##### End Post Install Section #####
