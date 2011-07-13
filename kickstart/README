@@ -1,6 +1,7 @@
 Look in the folders for existing kickstart stuff.  Ways I've been thinking about modifying are here in the README
 
 looking to produce something like this (R is required)
+rules - the recipe should be able to pass in extra args, appended to the current list; the args should first be compared to existing args and replace if necessary.
 ------------------------------------------
 install
 install_method (set default) if install method not nfs, http, ftp then no network
