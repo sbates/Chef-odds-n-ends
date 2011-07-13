@@ -1,5 +1,39 @@
 Look in the folders for existing kickstart stuff.  Ways I've been thinking about modifying are here in the README
 
+looking to produce something like this (R is required)
+------------------------------------------
+install
+install_method (set default) if install method not nfs, http, ftp then no network
+network
+clearpart --all --initlabel
+autopart unless part
+ignoredisk
+authconfig R  --enableshadow --enablemd5
+bootloader R (--location=mbr)
+firewall --disabled 
+key --skip
+keyboard R us
+lang R en_US
+rootpw R somepw
+selinux --permissive
+skipx unless xconfig
+text
+timezone R --utc unless timezone
+zerombr unless nozerombr
+reboot unless halt, poweroff, shutdown
+
+# Base Packages
+# @core and @base are included by default
+# Just need to provide a place for any special pkg +/- from recipe
+%packages
+
+# Instructions for post should only involve getting a working chef client chef-client
+%post
+
+--------------------------------------
+
+
+more random notes:
 # ensure the ks env is set up
 attributes:
 base_dir "/var/www/mrepo"
