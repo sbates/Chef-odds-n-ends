@@ -30,8 +30,7 @@ ks_files.each do |file|
       ruby_ver = values[1] # Ruby Version
       rh_uri = values[2] # The URI for the Red Hat repository
       gems_ver = values[3] # Rubygems Version - this is static at the moment, but could change in the future
-      bbycustom_uri = "bby-custom-#{rh_ver}" # A common repository URI with the ruby rpms
-      # TODO: Fragment -- IP because kickstarts have no DNS
+      custom_uri = "custom-#{rh_ver}" # A common repository URI with the ruby rpms
       ruby_packages = [
           "ruby-#{ruby_ver}",
           "ruby-devel-#{ruby_ver}",
@@ -163,7 +162,7 @@ ks_files.each do |file|
       # RH4, not so much.  So it gets done in the post section as a command line item
       # This line gets added to install directives and the packages to the package install list.
       # See the post section for RH4.
-      bby_custom_repo = "repo --name bby-custom --baseurl #{base_url}/#{bbycustom_uri}"
+      custom_repo = "repo --name custom --baseurl #{base_url}/#{custom_uri}"
 
 
       ################## End Kickstart #################################
@@ -242,7 +241,7 @@ ks_files.each do |file|
             :config_chefclient => config_chefclient.join("\n"),
             :install_rubygems => install_rubygems.join("\n"),
             :json_file => json_file.join("\n"),
-            :bby_custom_repo => bby_custom_repo,
+            :custom_repo => custom_repo,
             :firewall => firewall,
             :langsupport => langsupport
         )
