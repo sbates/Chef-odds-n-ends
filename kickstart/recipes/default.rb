@@ -39,11 +39,10 @@ kscfg "/var/www/ks/rhel-5.5-x86_64-server.ks" do
 end
 
 kscfg "/var/www/ks/rhel-5.5-x86_64-vm.ks" do
-  source "url --url #{node['kickstart']['base_url']}/#{rh5_uri}"
+  source "url --url #{node['kickstart']['base_url']}/custom-rh5"
   part disk_args['part']
   network "network --bootproto=static --ip=10.0.2.15 --netmask=255.255.255.0 --gateway=10.0.2.254 --nameserver=10.0.2.1"
   auth "--enableshadow --enablemd5 --enablecache"
-  finish_opts "reboot"
   timezone "--utc America/Chicago"
   selinux "--disabled"
   moar_opts ["custom_repo" => ["repo --name custom --baseurl #{base_url}/custom-rh5"]]
