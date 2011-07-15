@@ -136,27 +136,26 @@ ks_files.each do |file|
       langsupport = "langsupport --default=en_US.UTF-8 en_US.UTF-8"
 
       ### Volume Info
-      server_vol_info = [
-          "clearpart --all --initlabel",
-          "part /boot --fstype ext3 --size=100",
-          "part pv.17 --size=100 --grow",
-          "volgroup VolGroup00 --pesize=32768 pv.17",
-          "logvol / --fstype ext3 --name=root --vgname=VolGroup00 --size=10240",
-          "logvol swap --fstype swap --name=swap --vgname=VolGroup00 --size=8192",
-          "logvol /var --fstype ext3 --name=var --vgname=VolGroup00 --size=5632",
-          "logvol /tmp --fstype ext3 --name=tmp --vgname=VolGroup00 --size=2048",
-          "logvol /var/logs --fstype ext3 --name=logs --vgname=VolGroup00 --size=30720",
-          "logvol /opt/tripwire --fstype ext3 --name=tripwire --vgname=VolGroup00 --size=256",
-          "reboot"
+     {id:disk_params,
+          server_default : [
+          ["clearpart", "--all --initlabel"],
+          ["part", "/boot --fstype ext3 --size=100"],
+          ["part", "pv.17 --size=100 --grow"],
+          ["volgroup", "VolGroup00 --pesize=32768 pv.17"],
+          ["logvol", "/ --fstype ext3 --name=root --vgname=VolGroup00 --size=10240"],
+          ["logvol", "swap --fstype swap --name=swap --vgname=VolGroup00 --size=8192"],
+          ["logvol", "/var --fstype ext3 --name=var --vgname=VolGroup00 --size=5632"],
+          ["logvol", "/tmp --fstype ext3 --name=tmp --vgname=VolGroup00 --size=2048"],
+          ["logvol", "/var/logs --fstype ext3 --name=logs --vgname=VolGroup00 --size=30720"],
+          ["logvol", "/opt/tripwire --fstype ext3 --name=tripwire --vgname=VolGroup00 --size=256"]
       ]
-
-      vm_vol_info = [
-          "clearpart --all --initlabel",
-          "part / --bytes-per-inode=4096 --fstype=\"ext3\" --grow --size=1",
-          "part swap --recommended",
-          "reboot"
+      vm_default : [
+          ["clearpart --all --initlabel",]
+          [ "part / --bytes-per-inode=4096 --fstype=\"ext3\" --grow --size=1"]
+          ["part swap --recommended"]
       ]
-
+      server_denver : []
+}
       ###### Installing Ruby ###########
       # RH5/6 kickstarts accept definitions of additional repos which can be used to install ruby packages
       # RH4, not so much.  So it gets done in the post section as a command line item

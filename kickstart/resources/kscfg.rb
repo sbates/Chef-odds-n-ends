@@ -1,7 +1,7 @@
 actions :create, :delete
 
 # kickstart file opts
-attribute :path,          :kind_of => String :name_attribute => true
+attribute :path,          :kind_of => String, :name_attribute => true
 attribute :group,         :regex => Chef::Config[:group_valid_regex]
 attribute :mode,          :regex => /^0?\d{3,4}$/
 attribute :owner,         :regex => Chef::Config[:group_valid_regex]
@@ -12,9 +12,11 @@ attribute :platform,      :default => "redhat" # hopefully can also use ubuntu i
 # Your options will REPLACE the defaults, NOT append
 
 # disk options; needs checks, need to have part/volgroup/logvol in order and required by each other
-attribute :partition_opts,:kind_of => Array
-attribute :logvol_opts,   :kind_of => Array
-attribute :volgroup_opts, :kind_of => Array
+attribute :clearpart,     :kind_of => String,:default => "--all --initlabel"
+attribute :raid,          :kind_of => Array
+attribute :part,          :kind_of => Array, :default => ["autopart", "clearpart --all --initlabel"]
+attribute :logvol,        :kind_of => Array
+attribute :volgroup,      :kind_of => Array
 
 attribute :zerombr,       :default => true
 attribute :install,       :default => true  # set to false for update
@@ -31,7 +33,7 @@ attribute :skipx,         :default => true  # set to false if xconfig opts desir
 attribute :keyboard,      :kind_of => String, :default => "us"
 attribute :lang,          :kind_of => String, :default => "en_US"
 attribute :rootpw_opts,   :kind_of => String, :default => "icanhazpazzwerd?" # opts: --iscrypted <password>
-attribute :text           :default => true
+attribute :text,           :default => true
 attribute :moar_opts,     :kind_of => Hash  # for any optional params ex: { "logging" => "--loggingopt1 --loggingopt2"}
 attribute :moar_pkgs,     :kind_of => Array # kickstart auto-includes @core, @base; (opts --nobase, pkg1, pkg2, -pkg3)
 attribute :post,          :kind_of => Cookbook_file # Can I do that? write your post script commands and place
