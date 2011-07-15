@@ -1,6 +1,5 @@
 {"id":"disk_params",
   "server_default":{
-    "clearpart": ["--all --initlabel"],
     "part": ["/boot --fstype ext3 --size=100", "pv.17 --size=100 --grow"],
     "volgroup" : ["VolGroup00 --pesize=32768 pv.17"],
     "logvol" : [
@@ -13,7 +12,6 @@
     ]
   },
   "vm_default" : {
-    "clearpart" : ["--all --initlabel"],
     "part" : ["/ --bytes-per-inode=4096 --fstype='ext3' --grow --size=1","swap --recommended"]
   }
 }

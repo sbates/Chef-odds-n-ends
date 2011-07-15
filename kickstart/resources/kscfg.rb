@@ -7,8 +7,8 @@ attribute :mode,          :regex => /^0?\d{3,4}$/
 attribute :owner,         :regex => Chef::Config[:group_valid_regex]
 attribute :platform,      :default => "redhat" # hopefully can also use ubuntu in the future
 
-#kickstart options; an attribute exists if a)an opt is required or b)I've explicitly set a default
-# OR c)if the option is complex and might require more than one line
+# kickstart options; an attribute exists if a)an opt is required or b)I've explicitly set a default
+# OR c)if the option is complex and likely to be used (like disk)
 # Your options will REPLACE the defaults, NOT append
 
 # disk options; needs checks, need to have part/volgroup/logvol in order and required by each other
@@ -32,8 +32,9 @@ attribute :selinux,       :kind_of => String, :equal_to => ["--enforcing", "--pe
 attribute :skipx,         :default => true  # set to false if xconfig opts desired
 attribute :keyboard,      :kind_of => String, :default => "us"
 attribute :lang,          :kind_of => String, :default => "en_US"
-attribute :rootpw_opts,   :kind_of => String, :default => "icanhazpazzwerd?" # opts: --iscrypted <password>
-attribute :text,           :default => true
+attribute :rootpw,        :kind_of => String, :default => "icanhazpazzwerd?" # opts: --iscrypted <password>
+attribute :text,          :default => true
 attribute :moar_opts,     :kind_of => Hash  # for any optional params ex: { "logging" => "--loggingopt1 --loggingopt2"}
 attribute :moar_pkgs,     :kind_of => Array # kickstart auto-includes @core, @base; (opts --nobase, pkg1, pkg2, -pkg3)
-attribute :post,          :kind_of => Cookbook_file # Can I do that? write your post script commands and place
+
+# RE: post scripts; thinking place them in files directory and the provider will collect them
