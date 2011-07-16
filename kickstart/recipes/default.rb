@@ -45,5 +45,5 @@ kscfg "/var/www/ks/rhel-5.5-x86_64-vm.ks" do
   auth "--enableshadow --enablemd5 --enablecache"
   timezone "--utc America/Chicago"
   selinux "--disabled"
-  moar_opts ["custom_repo" => ["repo --name custom --baseurl #{base_url}/custom-rh5"]]
+  moar_opts ["repo" => ["--name custom --baseurl #{base_url}/custom-rh5"]]
 end
