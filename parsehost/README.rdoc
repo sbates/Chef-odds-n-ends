@@ -1,0 +1,13 @@
+= DESCRIPTION:
+This cookbook contains a library that simplifies and formlizes the host
+parsing I started in the ohai plugin.  Everything is output into one hash.  I don't have a use case for this as
+it was requested by a team mate.  I believe he will be using it to do work about not-yet-existing hosts, like creating
+a dhcpd.conf for each kickstart server and possibly we might make seed data for pre-populating nodes.
+
+= REQUIREMENTS:
+A working chef server.  There is a data bag containing the information used to parse the host.
+
+= ATTRIBUTES:
+
+= USAGE:
+

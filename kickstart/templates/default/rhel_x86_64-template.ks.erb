@@ -1,0 +1,58 @@
+# This kickstart file is created dynamically by Chef.  If you alter it by hand, it will change itself back in 30 minutes or the next time chef-client runs.
+# Please see the kickstart cookbook in Chef for details on how the file is created.
+
+# The Base install directives
+
+<% if @rh_ver == "5.5" %>
+<%= @key %>
+<% end %>
+
+<%= @install_directives %>
+<% if @rh_ver == "4.8" %>
+<%= @firewall %>
+<%= @langsupport %>
+<% end %>
+
+<% unless @rh_ver == "4.8" %>
+<%= @bby_custom_repo %>
+<% end %>
+
+# Currently volume_info the only information that differs between kickstart templates
+<% if @file == "server" %>
+    <%= @server_vol_info %>
+<% elsif @file == "vm" %>
+    <%= @vm_vol_info %>
+<% end %>
+
+# Base Packages
+<%= @base_packages %>
+
+<% if @rh_ver == "4.8" %>
+# Deprecated Packages only for installing in rh4
+<%= @deprecated_packages %>
+<% end %>
+
+# Deleted Packages
+<%= @deleted_packages %>
+
+<% unless @rh_ver == "4.8" %>
+# Ruby Packages for rh5/6
+<%= @ruby_packages %>
+<% end %>
+
+# Post
+<%= @post %>
+
+<% if @rh_ver == "4.8" %>
+# Install chef-client RPMs if this is rh4
+<%= @rh4_ruby_install %>
+<% end %>
+
+#Install Rubygems
+<%= @install_rubygems %>
+
+# Create base JSON node info for first run
+<%= @json_file %>
+
+# configure chef-client
+<%= @config_chefclient %>

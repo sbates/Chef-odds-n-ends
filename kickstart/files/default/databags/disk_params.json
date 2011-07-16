@@ -1,0 +1,17 @@
+{"id":"disk_params",
+  "server_default":{
+    "part": ["/boot --fstype ext3 --size=100", "pv.17 --size=100 --grow"],
+    "volgroup" : ["VolGroup00 --pesize=32768 pv.17"],
+    "logvol" : [
+      "/ --fstype ext3 --name=root --vgname=VolGroup00 --size=10240",
+      "swap --fstype swap --name=swap --vgname=VolGroup00 --size=8192",
+      "/var --fstype ext3 --name=var --vgname=VolGroup00 --size=5632",
+      "/tmp --fstype ext3 --name=tmp --vgname=VolGroup00 --size=2048",
+      "/var/logs --fstype ext3 --name=logs --vgname=VolGroup00 --size=30720",
+      "/opt/tripwire --fstype ext3 --name=tripwire --vgname=VolGroup00 --size=256"
+    ]
+  },
+  "vm_default" : {
+    "part" : ["/ --bytes-per-inode=4096 --fstype='ext3' --grow --size=1","swap --recommended"]
+  }
+}

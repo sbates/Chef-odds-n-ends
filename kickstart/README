@@ -1,0 +1,100 @@
+Look in the folders for existing kickstart stuff.  Ways I've been thinking about modifying are here in the README
+
+looking to produce something like this (R is required)
+rules - the recipe should be able to pass in extra args, appended to the current list; the args should first be compared to existing args and replace if necessary.
+------------------------------------------
+install
+install_method (set default) if install method not nfs, http, ftp then no network
+network
+clearpart --all --initlabel
+autopart unless part
+ignoredisk
+authconfig R  --enableshadow --enablemd5
+bootloader R (--location=mbr)
+firewall --disabled 
+key --skip
+keyboard R us
+lang R en_US
+rootpw R somepw
+selinux --permissive
+skipx unless xconfig
+text
+timezone R --utc unless timezone
+zerombr unless nozerombr
+reboot unless halt, poweroff, shutdown
+
+# Base Packages
+# @core and @base are included by default
+# Just need to provide a place for any special pkg +/- from recipe
+%packages
+
+# Instructions for post should only involve getting a working chef client chef-client
+%post
+
+--------------------------------------
+
+
+more random notes:
+# ensure the ks env is set up
+attributes:
+base_dir "/var/www/mrepo"
+ks_dir "#{base_dir}/ks"
+ks_server node.chef.my_chef_server
+
+----------------------
+# make the base ks use autopart, but offer a way to pass in volume info?  Either with a resource or have the recipe supply a hash?
+ks_volume "name" do
+	pesize
+	pv
+end
+
+ks_filesystem "swap" do
+	slashname "/swap"
+	fstype "swap"
+	vgname "VolGroup00"
+	size "8192"
+
+
+ksfile "my_ks" do
+	platform "redhat"
+	platform_version "5.5"
+	pkgs ["gcc", "@X Window System", "--nobase", "-autofs"]
+	install_chef_client :full|post|no
+	install_options ["some option", "--someother option"]
+end
+------------------------------------------------------
+#### Thinking maybe make all the args passable by the recipe, but set sane defaults in the back end
+#### Attributes don't work well because things aren't always the same across redhat distros (or ubuntu)
+install_args
+
+  "firstboot --disable\n",
+	"network #{network_args}\n",
+	"rootpw #{rootpw_args}\n",
+	"selinux #{selinux_args}\n",
+	"skipx\n",
+	"timezone #{tz_args}"
+	"authconfig #{auth_args}\n"
+	"firewall #{firewall_args}\n"
+
+
+volume_args
+unless volume_args passed in:
+"autopart"
+
+##### Base Packages
+##### @core and @base are included by default
+##### Just need to provide a place for any special pkg +/- from recipe
+      base_packages = [
+          "%packages",
+          "recipe-passed pkgs"
+      ]
+%post
+if chef full, include a section in post for installing the client
+wget client tgz
+untar
+modify with local chef server/validation key (or platform stuff)
+
+if not chef full:
+get/install ruby, rubygems, chef
+
+do the rest of the post configs
