@@ -4,7 +4,9 @@
 # no cmdline, driverdisk, monitor (no X), xconfig (no X), autostep, upgrade; we're chef, we rebuild, not upgrade
 # no vnc, graphical, %include - because anything included would be in a recipe after the fact
 
-# This seems exceptionally complex for something that just generates what is essentially a config file.  On the other hand, you could data bag or hash almost everything, making it easy to maintain/build several different configs.
+# This seems exceptionally complex for something that just generates what is essentially a config file.  
+# On the other hand, you could data bag or hash almost everything,
+# making it easy to maintain/build several different configs.
 
 # ks_install, ks_source, ks_network, ks_disk, ks_authconfig, ks_bootloader
 # install options
