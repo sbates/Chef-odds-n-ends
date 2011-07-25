@@ -1,0 +1,12 @@
+{"id":"install",
+          "default":{
+            "install":"",
+            "key":"--skip",
+            "finish":"reboot",
+            "zerombr":""
+            "selinux":"--permissive",
+            "timezone":"--utc node['kickstart']['tz']",
+            "keyboard" =>   "node['kickstart']['keyboard']",
+            "lang" => "node['kickstart']['lang']"
+          }
+}

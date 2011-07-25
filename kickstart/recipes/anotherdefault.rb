@@ -1,14 +1,14 @@
-# Option 3: I define a set of labeled install args that are hashed/databagged and specify requirements and use in the documentation;
-# still do logic checks, like, you have to have a volgroup if you define a logvol, etc.
-# The hashes below are based on the individual components defined in altdefault.rb
+{"install"=>"default", "packages"=>"oracle", "logging"=>"default", "rootpw","default", "source"=>"rh4", "network"=>"default", "disk"=>"server_default"}.each do |k,v|
+   oracle_server_ksvars << ks_#{k} = search("kickstart", "#{k}:#{v}")
+end
 
-kscfg "ksfile.ks" do
-  install_opts {}
-  source_opts {}
-  network_opts {}
-  logging_opts {}
-  partition_args {}
-  raid_args {}
-  volgroup_args {}
-  logvol_largs {}
+oracfgs = Kscfg.new
+oracfgs.somestuffIhaventwrittenyet(oracle_server_ksvars) #some functionality to massage the data
+
+
+template "/var/www/mrepo/ks/oracle_server.ks" do
+  owner "root"
+  group "root"
+  mode 0644
+  variables (:orafileargs  => :orafileargs)
 end

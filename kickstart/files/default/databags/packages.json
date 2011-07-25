@@ -1,0 +1,6 @@
+{"id":"packages",
+        "default":[],
+        "clientdefault":["compat-db lvm2 net-snmp net-snmp-devel net-snmp-perl net-snmp-utils ntp openldap openldap-clients screen strace sysstat xorg-x11-xauth zsh gcc gdbm -apmd -aspell -aspell-en -bluez-bluefw -bluez-hcidump -bluez-libs -bluez-utils -dapl -dhclient -dhcpv6_client -finger -irda-utils -jpackage-utils -jwhois -lftp -lha -libibverbs -libmthca -libsdp -lksctp-tools -nano -pcmcia-cs -pinfo -rp-pppoe -rsh -star -stunnel -talk -vconfig -wireless-tools -wpa_supplicant -hotplug -cadaver -fetchmail -isdn4k-utils -minicom -ppp -wvdial"]
+
+        "oracle":["binutils elfutils elfutils-libelf gcc gcc-c++ glibc glibc-common glibc-devel compat-libstdc++-33 cpp make compat-db sysstat libaio libaio-devel unixODBC unixODBC-devel"]
+ }

@@ -1,0 +1,8 @@
+{"id":"source",
+    "default":{"source":"cdrom"}
+    "clientdefault":{
+          "url":"node['chef']['mrepo_url']/distver_uri",
+          "custom_url":"node[chef][mrepo_url]/#{node.ks.custom_uri}
+          "custom_mirror":""
+        }
+}

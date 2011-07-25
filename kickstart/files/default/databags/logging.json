@@ -1,0 +1,3 @@
+{"id":"logging",
+        "default":{"host":"", "port":"", "level":"debug"}
+ }

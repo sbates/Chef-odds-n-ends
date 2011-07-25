@@ -1,0 +1,16 @@
+{"id":"network",
+          "default":{
+            "bootproto":"dhcp",
+            "device":"eth0",
+            "ipv4":"true",
+            "ipv6":"false"
+          }
+          "clientdefault":{
+            "bootproto":"static",
+            "onboot":"true"
+            "ip":"#{some.other.databag.var}",
+            "netmask":"#{some.other.databag.var}",
+            "gateway":"#{some.other.databag.var}",
+            "nameserver":["192.168.2.1","192.168.3.1"]
+        }
+}
